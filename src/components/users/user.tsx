@@ -1,7 +1,14 @@
 import plusIcon from '../../assets/plus.svg';
+import minusIcon from '../../assets/minus.svg';
 
 export function User({
-  firstName, lastName, email, avatar,
+  id,
+  firstName,
+  lastName,
+  email,
+  avatar,
+  onClickInvite,
+  isInvited,
 }) {
   return (
     <li>
@@ -21,7 +28,14 @@ export function User({
           </p>
         </div>
       </div>
-      <img className="action" src={plusIcon} alt="Action" />
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,
+      jsx-a11y/no-noninteractive-element-interactions */}
+      <img
+        onClick={() => onClickInvite(id)}
+        className="action"
+        src={isInvited ? minusIcon : plusIcon}
+        alt="Action"
+      />
     </li>
   );
 }

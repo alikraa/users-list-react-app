@@ -6,6 +6,7 @@ import './app.scss';
 function App() {
   const url = 'https://reqres.in/api/users';
   const [users, setUsers] = useState([]);
+  const [invites, setInvites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState('');
 
@@ -19,6 +20,14 @@ function App() {
     setSearchValue(event.target.value);
   };
 
+  const onClickInvite = (id) => {
+    if (invites.includes(id)) {
+      setInvites((prev) => prev.filter((item) => item !== id));
+    } else {
+      setInvites((prev) => [...prev, id]);
+    }
+  };
+
   return (
     <div className="users-list__app">
       <Users
@@ -26,6 +35,8 @@ function App() {
         isLoading={isLoading}
         searchValue={searchValue}
         onChangeSearchValue={onChangeSearchValue}
+        invites={invites}
+        onClickInvite={onClickInvite}
       />
     </div>
   );

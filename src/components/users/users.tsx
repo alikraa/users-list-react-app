@@ -2,7 +2,12 @@ import { Skeleton } from './skeleton.tsx';
 import { User } from './user.tsx';
 
 export function Users({
-  items, isLoading, searchValue, onChangeSearchValue,
+  items,
+  isLoading,
+  searchValue,
+  onChangeSearchValue,
+  invites,
+  onClickInvite,
 }) {
   return (
     <>
@@ -27,7 +32,7 @@ export function Users({
         <ul className="users-list">
           {items
             .filter((item) => {
-              const fullName = (`${item.first_name} ${item.last_name}`).toLowerCase();
+              const fullName = `${item.first_name} ${item.last_name}`.toLowerCase();
 
               return (
                 fullName.includes(searchValue.toLowerCase())
@@ -37,10 +42,13 @@ export function Users({
             .map((item) => (
               <User
                 key={item.id}
+                id={item.id}
                 firstName={item.first_name}
                 lastName={item.last_name}
                 email={item.email}
                 avatar={item.avatar}
+                isInvited={invites.includes(item.id)}
+                onClickInvite={onClickInvite}
               />
             ))}
         </ul>
@@ -51,3 +59,4 @@ export function Users({
     </>
   );
 }
+
