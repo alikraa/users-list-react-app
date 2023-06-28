@@ -8,6 +8,7 @@ export function Users({
   onChangeSearchValue,
   invites,
   onClickInvite,
+  onClickSendInvites,
 }) {
   return (
     <>
@@ -53,10 +54,15 @@ export function Users({
             ))}
         </ul>
       )}
-      <button type="button" className="send-invite-btn">
-        Отправить приглашение
-      </button>
+      {invites.length > 0 && (
+        <button
+          type="button"
+          className="send-invite-btn"
+          onClick={onClickSendInvites}
+        >
+          Отправить приглашение
+        </button>
+      )}
     </>
   );
 }
-

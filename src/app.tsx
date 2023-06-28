@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Users } from './components/users/users.tsx';
+import { Success } from './components/success.tsx';
 import { serverRequest } from './ts/request.ts';
 import './app.scss';
 
@@ -9,6 +10,7 @@ function App() {
   const [invites, setInvites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState('');
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     serverRequest(url)
@@ -28,16 +30,25 @@ function App() {
     }
   };
 
+  const onClickSendInvites = () => {
+    setSuccess(true);
+  };
+
   return (
     <div className="users-list__app">
-      <Users
-        items={users}
-        isLoading={isLoading}
-        searchValue={searchValue}
-        onChangeSearchValue={onChangeSearchValue}
-        invites={invites}
-        onClickInvite={onClickInvite}
-      />
+      {success ? (
+        <Success count={invites.length} />
+      ) : (
+        <Users
+          items={users}
+          isLoading={isLoading}
+          searchValue={searchValue}
+          onChangeSearchValue={onChangeSearchValue}
+          invites={invites}
+          onClickInvite={onClickInvite}
+          onClickSendInvites={onClickSendInvites}
+        />
+      )}
     </div>
   );
 }
