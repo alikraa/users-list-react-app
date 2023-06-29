@@ -1,6 +1,7 @@
+import { SuccessProps } from '../ts/interfaces.ts';
 import successIcon from '../assets/success.svg';
 
-function Success({ count }) {
+function Success({ count }: SuccessProps) {
   return (
     <div className="success-block">
       <img src={successIcon} alt="Success" />

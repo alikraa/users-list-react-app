@@ -1,3 +1,4 @@
+import { UsersProps } from '../../ts/interfaces.ts';
 import { Skeleton } from './skeleton.tsx';
 import { User } from './user.tsx';
 
@@ -9,7 +10,7 @@ export function Users({
   invites,
   onClickInvite,
   onClickSendInvites,
-}) {
+}: UsersProps) {
   return (
     <>
       <div className="search">

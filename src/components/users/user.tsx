@@ -1,3 +1,4 @@
+import { UserProps } from '../../ts/interfaces.ts';
 import plusIcon from '../../assets/plus.svg';
 import minusIcon from '../../assets/minus.svg';
 
@@ -9,7 +10,7 @@ export function User({
   avatar,
   onClickInvite,
   isInvited,
-}) {
+}: UserProps) {
   return (
     <li>
       <div>

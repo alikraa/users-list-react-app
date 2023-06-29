@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Users } from './components/users/users.tsx';
 import { Success } from './components/success.tsx';
 import { serverRequest } from './ts/request.ts';
@@ -7,7 +7,7 @@ import './app.scss';
 function App() {
   const url = 'https://reqres.in/api/users';
   const [users, setUsers] = useState([]);
-  const [invites, setInvites] = useState([]);
+  const [invites, setInvites] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchValue, setSearchValue] = useState('');
   const [success, setSuccess] = useState(false);
@@ -18,11 +18,11 @@ function App() {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const onChangeSearchValue = (event) => {
+  const onChangeSearchValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
 
-  const onClickInvite = (id) => {
+  const onClickInvite = (id: number) => {
     if (invites.includes(id)) {
       setInvites((prev) => prev.filter((item) => item !== id));
     } else {
